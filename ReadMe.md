@@ -44,7 +44,7 @@ SleepFor=10s
 ## Zabbix
 
 -   Create a new host with hostname from configuration file
--   Add new items to host type of 'zabbix trapper' and send key to website's name without .com etc (eg. if website is 'google.com', the key would be 'google')
+-   Add new items to host type of 'zabbix trapper' and set key value to website's name without .com etc (eg. if website is 'google.com', the key would be 'google')
 -   Add triggers for each item
 
 ## Done
