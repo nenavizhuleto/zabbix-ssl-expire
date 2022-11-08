@@ -33,14 +33,14 @@ function makeconfig ()
 # Configuration file for ssl expire monitoring system
 ZabbixServer=127.0.0.1
 Hostname=SSL_EXPIRE
-# Websites=(google.com yandex.ru dedic74.ru)
+# Websites=(google.com github.com)
 Websites=()
 # Time until next query (use suffixes 's' for seconds, 'm' for minutes, 'h' for hours, 'd' for days)
 # SleepFor=1d
 SleepFor=10s
     " > "$CONFIG_PATH"/"$CONFIG_FILE"
     echo "Default configuration is created"
-    exit 1
+    exit 0
 }
 
 function createservice ()
@@ -133,26 +133,6 @@ while [ : ]; do
   esac
 done
 
-# while getopts 'i:sf:ht:' OPTION; do
-#     case "$OPTION" in
-#         i)
-#             IP="$OPTARG"
-#             ;;
-#         t)
-#             TIMEOUT="$OPTARG"
-#             ;;
-#         f)
-#             FILE="$OPTARG"
-#             ;;
-#         s)
-#             SAVE=1
-#             ;;
-#         ?|h)
-#             usage
-#             ;;
-#     esac
-# done
-
 if [ "" == "$IP" ]
 then
     echo "please provide correct address"
@@ -186,7 +166,6 @@ then
 fi
 
 expireDate=$(echo "$cerinfo" | grep "expire date" | cut -d":" -f 2-)
-# echo "$expireDate"
 
 expireDateEpoch=$(date --date "$expireDate" "+%s")
 currentDateEpoch=$(date --date "$currentDate" "+%s")
@@ -194,3 +173,4 @@ currentDateEpoch=$(date --date "$currentDate" "+%s")
 diff=$(( (expireDateEpoch - currentDateEpoch) / 86400 ))
 
 echo "$diff"
+exit 0
