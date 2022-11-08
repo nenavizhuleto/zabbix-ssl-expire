@@ -16,7 +16,7 @@ function usage ()
     echo "-s                                    flag save to file"
     echo "-f    [filename]                      file to save information to"
     echo "-t    [timeout]                       connection timeout in seconds (default: 5 seconds)"
-    echo "--make-config                         create default configuration"
+    echo "--make-config                         create default configuration /etc/ssl_expire/ssl_expire.conf"
     echo "--create-service [configPath]         create monitoring service based on config file in /etc/ssl_expire"
     echo "-h                                    show this"
     exit 1
@@ -66,7 +66,7 @@ while [ : ]
 do
     for site in \${Websites[@]}; do
         data=\$(ssl_expire --ip \"\$site\")
-        zabbix_sender -z \"\$ZabbixServer\" -s \"\$Hostname\" -k \"\$Key\" -o \"\$data\"
+        zabbix_sender -z \"\$ZabbixServer\" -s \"\$Hostname\" -k \$(echo \"\$site\" | cut -d\".\" -f 1) -o \"\$data\"
         sleep 1
     done
     sleep 10
