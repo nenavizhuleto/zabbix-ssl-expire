@@ -9,18 +9,16 @@
 
 ```$ cd scripts/```
 
-3. Make default configuration file:
+3. Run installer:
 
-```# ./ssl_expire --make-config```
+```
+# ./ssl_expire_install
+```
 
-4. Create service:
-
-```# ./ssl)expire --create-service```
-
-5. Edit config file:
+4. Edit config file:
 
 ```# vim /etc/ssl_expire/ssl_expire.conf```
 
-6. Start service:
+5. Start service:
 
 ```# systemctl start ssl_expire_mon.service```
