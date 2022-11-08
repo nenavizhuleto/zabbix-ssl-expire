@@ -33,9 +33,11 @@ function makeconfig ()
 # Configuration file for ssl expire monitoring system
 ZabbixServer=127.0.0.1
 Hostname=SSL_EXPIRE
-Key=data
 # Websites=(google.com yandex.ru dedic74.ru)
 Websites=()
+# Time until next query (use suffixes 's' for seconds, 'm' for minutes, 'h' for hours, 'd' for days)
+# SleepFor=1d
+SleepFor=10s
     " > "$CONFIG_PATH"/"$CONFIG_FILE"
     echo "Default configuration is created"
     exit 1
@@ -69,7 +71,7 @@ do
         zabbix_sender -z \"\$ZabbixServer\" -s \"\$Hostname\" -k \$(echo \"\$site\" | cut -d\".\" -f 1) -o \"\$data\"
         sleep 1
     done
-    sleep 10
+    sleep \"\$SleepFor\"
 done" > "$BIN_PATH"/"$BIN_MON_NAME"
 
     chmod +x "$BIN_PATH"/"$BIN_MON_NAME"
