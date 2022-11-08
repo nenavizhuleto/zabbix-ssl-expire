@@ -1,6 +1,7 @@
 #!/bin/bash
 
 CONFIG_PATH=/etc/ssl_expire
+CERTINFO_PATH=/etc/ssl_expire/certinfo
 CONFIG_FILE=ssl_expire.conf
 SERVICE_PATH=/etc/systemd/system
 SERVICE_NAME=ssl_expire_mon.service
@@ -154,7 +155,7 @@ currentDate=$(date)
 
 cerinfo=$(curl --connect-timeout "$TIMEOUT" https://"$IP" -vI --stderr - | grep -A 6  "Server certificate")
 
-if [ "" == "$cerinfo" ]
+if [ "" == "$certinfo" ]
 then
     echo "connection exceeded "$TIMEOUT"s timeout. cancelling..."
     exit 1
@@ -162,10 +163,14 @@ fi
 
 if [ "$SAVE" == 1 ]
 then
-    echo "$cerinfo" > "$FILE"
+    if [ [ ! -d "$CERTINFO_PATH"] ]
+    then
+        mkdir "$CERTINFO_PATH"
+    fi
+    echo "$certinfo" > "$CERTINFO_PATH"/"$FILE"
 fi
 
-expireDate=$(echo "$cerinfo" | grep "expire date" | cut -d":" -f 2-)
+expireDate=$(echo "$certinfo" | grep "expire date" | cut -d":" -f 2-)
 
 expireDateEpoch=$(date --date "$expireDate" "+%s")
 currentDateEpoch=$(date --date "$currentDate" "+%s")
