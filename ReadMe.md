@@ -3,9 +3,7 @@
 ## Installation
 1. Clone repo:
 
-`
-$ git clone https://github.com/nenavizhuleto/scripts.git
-`
+`$ git clone https://github.com/nenavizhuleto/scripts.git`
 
 2. Cd into *scripts* directory:
 
