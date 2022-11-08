@@ -3,11 +3,15 @@
 ## Installation
 1. Clone repo:
 
-```$ git clone https://github.com/nenavizhuleto/scripts.git```
+```
+$ git clone https://github.com/nenavizhuleto/scripts.git
+```
 
 2. Cd into *scripts* directory:
 
-```$ cd scripts/```
+```
+$ cd scripts/
+```
 
 3. Run installer:
 
@@ -17,8 +21,12 @@
 
 4. Edit config file:
 
-```# vim /etc/ssl_expire/ssl_expire.conf```
+```
+# vim /etc/ssl_expire/ssl_expire.conf
+```
 
 5. Start service:
 
-```# systemctl start ssl_expire_mon.service```
+```
+# systemctl start ssl_expire_mon.service
+```
