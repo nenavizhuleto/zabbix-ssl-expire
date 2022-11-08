@@ -64,7 +64,7 @@ source "\$CONFIG_PATH"/"\$CONFIG_FILE"
 
 while [ : ]
 do
-    for site in \${\$Websites[@]}; do
+    for site in \${Websites[@]}; do
         data=\$(ssl_expire --ip "\$site")
         zabbix_sender -z "\$ZabbixServer" -s "\$Hostname" -k "\$Key" -o "\$data"
         sleep 1
@@ -129,25 +129,25 @@ while [ : ]; do
   esac
 done
 
-while getopts 'i:sf:ht:' OPTION; do
-    case "$OPTION" in
-        i)
-            IP="$OPTARG"
-            ;;
-        t)
-            TIMEOUT="$OPTARG"
-            ;;
-        f)
-            FILE="$OPTARG"
-            ;;
-        s)
-            SAVE=1
-            ;;
-        ?|h)
-            usage
-            ;;
-    esac
-done
+# while getopts 'i:sf:ht:' OPTION; do
+#     case "$OPTION" in
+#         i)
+#             IP="$OPTARG"
+#             ;;
+#         t)
+#             TIMEOUT="$OPTARG"
+#             ;;
+#         f)
+#             FILE="$OPTARG"
+#             ;;
+#         s)
+#             SAVE=1
+#             ;;
+#         ?|h)
+#             usage
+#             ;;
+#     esac
+# done
 
 if [ "" == "$IP" ]
 then
@@ -182,7 +182,7 @@ then
 fi
 
 expireDate=$(echo "$cerinfo" | grep "expire date" | cut -d":" -f 2-)
-echo "$expireDate"
+# echo "$expireDate"
 
 expireDateEpoch=$(date --date "$expireDate" "+%s")
 currentDateEpoch=$(date --date "$currentDate" "+%s")
