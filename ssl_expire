@@ -60,13 +60,13 @@ function createservice ()
 CONFIG_PATH=$CONFIG_PATH
 CONFIG_FILE=$config
 
-source "\$CONFIG_PATH"/"\$CONFIG_FILE"
+source \"\$CONFIG_PATH\"/\"\$CONFIG_FILE\"
 
 while [ : ]
 do
     for site in \${Websites[@]}; do
-        data=\$(ssl_expire --ip "\$site")
-        zabbix_sender -z "\$ZabbixServer" -s "\$Hostname" -k "\$Key" -o "\$data"
+        data=\$(ssl_expire --ip \"\$site\")
+        zabbix_sender -z \"\$ZabbixServer\" -s \"\$Hostname\" -k \"\$Key\" -o \"\$data\"
         sleep 1
     done
     sleep 10
