@@ -72,6 +72,8 @@ do
     sleep 10
 done" > "$BIN_PATH"/"$BIN_MON_NAME"
 
+    chmod +x "$BIN_PATH"/"$BIN_MON_NAME"
+
     echo "
 [Unit]
 Description=Monitoring of web site ssl expiration date and sending it to zabbix server
